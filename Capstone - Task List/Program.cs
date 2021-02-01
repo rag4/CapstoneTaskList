@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Capstone___Task_List
 {
@@ -10,11 +9,11 @@ namespace Capstone___Task_List
     {
         static void Main(string[] args)
         {
-            List<TaskNode> taskList = new List<TaskNode>();
+            List<TaskNode> taskList = new List<TaskNode>();             // list of task objects
 
             while (true)
             {
-                Console.WriteLine("Welcome to the Task Manager"
+                Console.WriteLine("Welcome to the Task Manager"         // menu
                     + "\n1. List tasks"
                     + "\n2. List task for one team member"
                     + "\n3. Add task"
@@ -23,77 +22,104 @@ namespace Capstone___Task_List
                     + "\n6. Mark task complete"
                     + "\n7. Quit\n");
 
-                Console.Write("What would you like to do? \t");
+                Console.Write("What would you like to do? \t");                         // ask user input (number)
                 string input = Console.ReadLine();
-                int inputNum = int.Parse(input);
+                bool checkNum = input.Any(char.IsDigit);                                // check if string is numeric
+                while (!checkNum)
+                {
+                    Console.Write("\nIncorrect format. Please enter a number:      ");
+                    input = Console.ReadLine();
+                    checkNum = input.Any(char.IsDigit);
+                }
+                int inputNum = int.Parse(input);                
                 Console.WriteLine();
 
                 if (inputNum == 1)
                 {
-                    ListTasks(taskList);                    
+                    ListTasks(taskList);                        // list all tasks
                 }
                 if (inputNum == 2)
                 {
-                    ListPersonTask(taskList);
+                    ListPersonTask(taskList);                   // list one member's task
                 }
                 else if (inputNum == 3)
                 {
-                    AddTask(taskList);
+                    AddTask(taskList);                          // add task
                 }
                 else if (inputNum == 4)
                 {
-                    DeleteTask(taskList);
+                    DeleteTask(taskList);                       // delete task
                 }
                 else if (inputNum == 5)
                 {
-                    EditTask(taskList);
+                    EditTask(taskList);                         // edit task
                 }
                 else if (inputNum == 6)
                 {
-                    MarkTask(taskList);
+                    MarkTask(taskList);                         // mark task complete
                 }
                 else if (inputNum == 7)
                 {
-                    break;
+                    break;                                      // quit
+                }
+                else if (inputNum < 1 || inputNum > 7)
+                {
+                    Console.WriteLine("\nThis option does not exist.\n");       // ERROR
                 }
                 Console.WriteLine();
             }
 
         }
 
+        // Display all elements in list of task objects
         private static void ListTasks(List<TaskNode> taskList)
         {
+            Console.WriteLine("*****LIST*****\n");
             if (!taskList.Any())
             {
                 Console.WriteLine("There are currently no tasks available..");
+                Console.WriteLine("\n*****LIST*****\n");
                 return;
             }
             for (int i = 1; i <= taskList.Count(); i++) {
                 Console.WriteLine("Task " + i + ".");
                 Console.WriteLine(taskList[i-1].Display());
                 Console.WriteLine();
-            }        
+            }
+            Console.WriteLine("\n*****LIST*****\n");
         }
 
+        // Create and Add a new task objects to the list
         private static void AddTask(List<TaskNode> taskList)
         {
-            Console.WriteLine("ADD TASK:\n");
+            Console.WriteLine("*****ADD*****\n");
             Console.Write("Team Member Name: \t");
             string memberName = Console.ReadLine();
             Console.Write("Task Description: \t");
             string description = Console.ReadLine();
             Console.Write("Due Date: \t\t");
             string dueDate = Console.ReadLine();
+            bool checkFlag = Regex.IsMatch(dueDate, @"^\d\d\/\d\d\/\d\d\d\d$");
+            while (checkFlag == false)
+            {
+                Console.Write("Incorrect format. Try again (##/##/####): \t");
+                dueDate = Console.ReadLine();
+                checkFlag = Regex.IsMatch(dueDate, @"^\d\d/\d\d/\d\d\d\d$");
+            }
 
             TaskNode toAdd = new TaskNode(memberName, description, dueDate);
             taskList.Add(toAdd);
+            Console.WriteLine("\n*****ADD*****\n");
         }
-         
+
+        // Delete a task by task number
         private static void DeleteTask(List<TaskNode> taskList)
         {
+            Console.WriteLine("*****DELETE*****\n");
             if (!taskList.Any())
             {
                 Console.WriteLine("There are currently no tasks available..");
+                Console.WriteLine("\n*****DELETE*****\n");
                 return;
             }
             Console.Write("Which task would you like to delete (Enter Task #): \t");
@@ -116,13 +142,17 @@ namespace Capstone___Task_List
                     Console.WriteLine("\nProcess aborted.");
                 }
             }
+            Console.WriteLine("\n*****DELETE*****\n");
         }
 
+        // Mark a task complete by task number
         private static void MarkTask(List<TaskNode> taskList)
         {
+            Console.WriteLine("*****MARK*****\n");
             if (!taskList.Any())
             {
                 Console.WriteLine("There are currently no tasks available..");
+                Console.WriteLine("\n*****MARK*****\n");
                 return;
             }
             Console.Write("Which task would you like to mark complete (Enter Task #): \t");
@@ -146,13 +176,17 @@ namespace Capstone___Task_List
                     Console.WriteLine("\nProcess aborted.");
                 }
             }
+            Console.WriteLine("\n*****MARK*****\n");
         }
 
+        // Edit an existing task by task number
         private static void EditTask(List<TaskNode> taskList)
         {
+            Console.WriteLine("*****EDIT*****\n");
             if (!taskList.Any())
             {
                 Console.WriteLine("There are currently no tasks available..");
+                Console.WriteLine("\n*****EDIT*****\n");
                 return;
             }
             Console.Write("Which task would you like to edit (Enter Task #): \t");
@@ -168,13 +202,19 @@ namespace Capstone___Task_List
                 input = Console.ReadLine();
                 if (input.ToUpper().Equals("Y"))
                 {
-                    Console.WriteLine("EDIT TASK:\n");
                     Console.Write("Team Member Name: \t");
                     string memberName = Console.ReadLine();
                     Console.Write("Task Description: \t");
                     string description = Console.ReadLine();
                     Console.Write("Due Date: \t\t");
                     string dueDate = Console.ReadLine();
+                    bool checkFlag = Regex.IsMatch(dueDate, @"^\d\d\/\d\d\/\d\d\d\d$");
+                    while (checkFlag == false)
+                    {
+                        Console.Write("Incorrect format. Try again (##/##/####): \t");
+                        dueDate = Console.ReadLine();
+                        checkFlag = Regex.IsMatch(dueDate, @"^\d\d/\d\d/\d\d\d\d$");
+                    }
 
                     taskList.ElementAt(choose - 1).EditContents(memberName, description, dueDate);
                     Console.WriteLine("\nTask saved.");
@@ -184,13 +224,17 @@ namespace Capstone___Task_List
                     Console.WriteLine("\nProcess aborted.");
                 }
             }
+            Console.WriteLine("\n*****EDIT*****\n");
         }
 
+        // Display all elements that match the name the user has inputted
         private static void ListPersonTask(List<TaskNode> taskList)
         {
+            Console.WriteLine("*****LIST-MEMBER*****\n");
             if (!taskList.Any())
             {
                 Console.WriteLine("There are currently no tasks available..");
+                Console.WriteLine("\n*****LIST-MEMBER*****\n");
                 return;
             }
             Console.Write("Who's tasks would you like to view (Enter name): ");
@@ -208,6 +252,7 @@ namespace Capstone___Task_List
                     Console.WriteLine("\nThere are no available tasks for member: " + memberName);
                 }
             }
+            Console.WriteLine("\n*****LIST-MEMBER*****\n");
         }
 
     }
