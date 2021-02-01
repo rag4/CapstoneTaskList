@@ -1,0 +1,13 @@
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.exe
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.deps.json
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.runtimeconfig.json
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.runtimeconfig.dev.json
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.dll
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\bin\Debug\netcoreapp3.1\TaskNode.pdb
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.csprojAssemblyReference.cache
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.AssemblyInfoInputs.cache
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.AssemblyInfo.cs
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.csproj.CoreCompileInputs.cache
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.dll
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.pdb
+C:\Users\RAMON\source\repos\Capstone - Task List\Capstone - Task List\obj\Debug\netcoreapp3.1\TaskNode.genruntimeconfig.cache
